@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiddos Fish | Premium Indonesian Fishery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ocean-deep: #1e3a5f;
+            --ocean-mid: #2e5984;
+            --ocean-light: #4a90c2;
+            --coral: #ff6b6b;
+            --sand: #f4e4c1;
+            --white: #ffffff;
+            --foam: #e8f4f8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--ocean-deep);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(30, 58, 95, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🐟";
+            font-size: 2rem;
+            animation: swim 3s ease-in-out infinite;
+        }
+
+        @keyframes swim {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(5px) rotate(-5deg); }
+            75% { transform: translateX(-5px) rotate(5deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--foam);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--coral);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 50%, var(--ocean-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='%23ffffff' opacity='.1'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' fill='%23ffffff' opacity='.1'/%3E%3C/svg%3E");
+            background-size: cover;
+            animation: wave 10s linear infinite;
+        }
+
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1200px; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--coral);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            animation: fadeInUp 1s ease-out 0.4s both;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 107, 107, 0.6);
+            background: transparent;
+            border-color: var(--coral);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating bubbles animation */
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rise 15s infinite ease-in;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(100px);
+            }
+            100% {
+                bottom: 100vh;
+                transform: translateX(-200px);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 5%;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--ocean-deep);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--coral);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--foam);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(30, 58, 95, 0.1);
+            border-color: var(--ocean-light);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            color: var(--ocean-deep);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 5%;
+            background: linear-gradient(to bottom, var(--foam), var(--white));
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(30, 58, 95, 0.15);
+        }
+
+        .about-image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--ocean-mid), var(--ocean-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: var(--white);
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            color: var(--ocean-deep);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--coral);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+
+        /* Products Preview */
+        .products {
+            padding: 5rem 5%;
+            background: var(--white);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .product-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(30, 58, 95, 0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--ocean-light), var(--ocean-mid));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            color: var(--ocean-deep);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .product-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--foam);
+            color: var(--ocean-deep);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 5%;
+            background: var(--ocean-deep);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item span {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #152a45;
+            color: var(--foam);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Scroll animation */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">Kiddos Fish</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu">☰</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="bubbles">
+            <div class="bubble" style="width: 40px; height: 40px; left: 10%; animation-duration: 12s; animation-delay: 0s;"></div>
+            <div class="bubble" style="width: 20px; height: 20px; left: 20%; animation-duration: 15s; animation-delay: 2s;"></div>
+            <div class="bubble" style="width: 50px; height: 50px; left: 35%; animation-duration: 18s; animation-delay: 4s;"></div>
+            <div class="bubble" style="width: 25px; height: 25px; left: 50%; animation-duration: 14s; animation-delay: 1s;"></div>
+            <div class="bubble" style="width: 35px; height: 35px; left: 65%; animation-duration: 16s; animation-delay: 3s;"></div>
+            <div class="bubble" style="width: 45px; height: 45px; left: 80%; animation-duration: 13s; animation-delay: 5s;"></div>
+            <div class="bubble" style="width: 15px; height: 15px; left: 90%; animation-duration: 17s; animation-delay: 2s;"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Fresh from Indonesian Waters</h1>
+            <p>Premium sustainable seafood delivered from the richest marine biodiversity on Earth. From our boats to your table.</p>
+            <a href="#products" class="cta-button">Explore Our Catch</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <h2 class="section-title scroll-reveal">Why Choose Kiddos Fish?</h2>
+        <div class="features-grid">
+            <div class="feature-card scroll-reveal">
+                <span class="feature-icon">🎣</span>
+                <h3>Sustainable Fishing</h3>
+                <p>We practice responsible fishing methods that protect marine ecosystems and ensure fish populations thrive for future generations.</p>
+            </div>
+            <div class="feature-card scroll-reveal">
+                <span class="feature-icon">⚡</span>
+                <h3>Flash Frozen Fresh</h3>
+                <p>Our catch is flash-frozen within hours of harvest, locking in peak freshness, flavor, and nutritional value.</p>
+            </div>
+            <div class="feature-card scroll-reveal">
+                <span class="feature-icon">🌏</span>
+                <h3>Indonesian Heritage</h3>
+                <p>Sourced from the Coral Triangle, home to the world's highest marine biodiversity and traditional fishing communities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-image scroll-reveal">
+                <div class="about-image-placeholder">🐠</div>
+            </div>
+            <div class="about-content scroll-reveal">
+                <h2>Rooted in Indonesian Waters</h2>
+                <p>Kiddos Fish operates across the Indonesian archipelago, partnering with local fishermen from Sumatra to Papua. We bridge traditional fishing wisdom with modern cold-chain logistics.</p>
+                <p>Our commitment to quality means every fish is traceable — from the specific waters where it was caught to the moment it reaches your kitchen.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Fishing Partners</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">Islands Covered</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products" id="products">
+        <h2 class="section-title scroll-reveal">Our Premium Selection</h2>
+        <div class="products-grid">
+            <div class="product-card scroll-reveal">
+                <div class="product-image">🐟</div>
+                <div class="product-info">
+                    <h3>Tuna (Tongkol)</h3>
+                    <p>Premium skipjack and yellowfin tuna, line-caught in the Indian Ocean.</p>
+                    <span class="product-tag">Wild Caught</span>
+                </div>
+            </div>
+            <div class="product-card scroll-reveal">
+                <div class="product-image">🦐</div>
+                <div class="product-info">
+                    <h3>Vannamei Shrimp</h3>
+                    <p>Sustainably farmed white shrimp from certified ponds in Sulawesi.</p>
+                    <span class="product-tag">ASC Certified</span>
+                </div>
+            </div>
+            <div class="product-card scroll-reveal">
+                <div class="product-image">🦑</div>
+                <div class="product-info">
+                    <h3>Squid (Cumi)</h3>
+                    <p>Fresh calamari from the Java Sea, cleaned and flash-frozen onboard.</p>
+                    <span class="product-tag">IQF Processed</span>
+                </div>
+            </div>
+            <div class="product-card scroll-reveal">
+                <div class="product-image">🐠</div>
+                <div class="product-info">
+                    <h3>Grouper (Kerapu)</h3>
+                    <p>Live-harvested coral trout and giant grouper for premium markets.</p>
+                    <span class="product-tag">Live Available</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <h2>Ready to Partner?</h2>
+        <p>Join leading restaurants and distributors who trust Kiddos Fish for their seafood supply.</p>
+        <a href="mailto:hello@kiddosfish.id" class="cta-button">Get in Touch</a>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span>📍</span>
+                Jakarta & Surabaya, Indonesia
+            </div>
+            <div class="contact-item">
+                <span>📧</span>
+                hello@kiddosfish.id
+            </div>
+            <div class="contact-item">
+                <span>📱</span>
+                +62 812-3456-7890
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Kiddos Fish. All rights reserved. | Sustainable Seafood from Indonesia 🌊</p>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'rgba(30, 58, 95, 0.98)';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.padding = '2rem';
+            navLinks.style.gap = '1.5rem';
+        });
+    </script>
+</body>
+</html>
